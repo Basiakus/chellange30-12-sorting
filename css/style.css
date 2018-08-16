@@ -11,6 +11,7 @@ body {
 	align-items: center;
 	flex-direction: column;
 	background-color: #cc5200;
+	counter-reset: section;   
 }
 h1 {
 	font-size: 3em;
@@ -21,7 +22,6 @@ h1 {
 	color: white;
 }
 ul#list { 
-	list-style-type: decimal;
 	list-style-position: inside;
 	background-color: white;
 	box-shadow: -3px 2px 13px rgba(0, 0, 0, 0.46);
@@ -39,6 +39,12 @@ ul#list li {
 	border-bottom: 1px solid gray;
 	display: flex;
 	justify-content: space-between;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+ul#list li::before {
+	counter-increment: section;                 /* Increment the value of section counter by 1 */
+	content: counter(section);                  /* Display the value of section counter */
 }
 h4 {
 	font-family: Arial, Helvetica, sans-serif;
@@ -52,21 +58,45 @@ h4 {
 }
 #addButton, #companyName, #deleteButton {
 	margin: 0 auto;
-	background: inherit;
+	background: white;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	text-shadow: -3px 2px 3px rgba(0, 0, 0, 0.46);
-	border: 1px solid white;
-	color: white;
+	border: 1px solid black;
+	border-radius: 3px;
+	color: black;
 	padding: 2px 4px;
 }
-#addButton:active, #companyName:active, #deleteButton:active {
+#addButton:active, #deleteButton:active {
 	transform: scale(.95);
 	text-shadow: none;
 	border: none;
 }
-#addButton:focus, #deleteButton:focus {
+#addButton:focus, #deleteButton:focus, #companyName:focus {
 	outline-style:none;
 	box-shadow:none;
 	border-color:transparent;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: white; 
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #dbdbdb;
+    border-radius: 25px; 
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #cecece; 
 }
