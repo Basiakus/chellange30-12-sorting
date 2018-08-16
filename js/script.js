@@ -4,6 +4,8 @@ const list = document.querySelector('#list');
 const addCompanyName = document.querySelector('#addCompanyName');
 const companyName = document.querySelector('#companyName');
 const addButton = document.querySelector('#addButton');
+const deleteButton = document.getElementById('deleteButton');
+const checkboxes = list.getElementsByClassName('box');
 
 
 let strArr = ['The Plot in You', 
@@ -16,7 +18,7 @@ let strArr = ['The Plot in You',
 			  'Oh, Sleeper', 
 			  'A Skylit Drive', 
 			  'Anywhere But Here', 
-			  'An Old Dog'];
+			  'An Old Dog']
 
 let sorted = strArr.sort((a, b) => filter(a) < filter(b) ? -1 : 1);
 
@@ -36,19 +38,30 @@ function filter(string) {
 }
 
 function printList() {
-	list.innerHTML = sorted.map(name => `<li>${name}`).join('');
+	list.innerHTML = sorted.map(name => `<li>${name}<input type="checkbox" class="box" /></li>`).join('');
 }
 
 function resorted() {
 	sorted = strArr.sort((a, b) => filter(a) < filter(b) ? -1 : 1);
 }
 
+function testing() {
+	Array.from(checkboxes).forEach(checkbox => {
+		if(checkbox.checked) {
+			const parentOfBox = checkbox.parentNode
+			console.log(parentOfBox);
+			parentOfBox.parentNode.removeChild(parentOfBox);
+		}
+	});
+}
+
+
 //EventListener declarations
 window.addEventListener('load', printList);
 addCompanyName.addEventListener('submit', addPerson);
 addCompanyName.addEventListener('submit', resorted);
 addCompanyName.addEventListener('submit', printList);
-
+deleteButton.addEventListener('click', testing);
 
 
 
